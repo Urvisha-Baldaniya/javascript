@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="calculator.css" type="text/css">
+
+</head>
+<body>
+    <div class="calc">
+    <form>
+        <input type="text" id="result" placeholder="0" style="text-align: right;" class="result"/>
+        <br/><br/>
+        <input type="button" value="C" id="allclear"/>
+        <button type="button" value="CE" id="clear">CE</button>
+        <input type="button" value="/"/>
+        <input type="button" value="%"id="per"/>
+        <br/><br/>
+        <input type="button" value="7"/>
+        <input type="button" value="8"/>
+        <input type="button" value="9"/>
+        <input type="button" value="*"/>
+        <br/><br/>
+        <input type="button" value="4"/>
+        <input type="button" value="5"/>
+        <input type="button" value="6"/>
+        <input type="button" value="-"/>
+        <br/><br/>
+        <input type="button" value="1"/>
+        <input type="button" value="2"/>
+        <input type="button" value="3"/>
+        <input type="button" value="+"/>
+        <br/><br/>
+        <input type="button" value="+/-" id="negative"/>
+        <input type="button" value="0"/>
+        <input type="button" value="."/>
+        <button type="button" value="=" class="theme" id="output">=</button>
+        <br/><br/>
+    </form>
+</div>
+
+    <script>
+
+        var btn = document.querySelectorAll('input');
+        var result = document.querySelector('#result');
+        var output = document.querySelector('#output');
+        var allclear = document.querySelector('#allclear');
+        var clear = document.querySelector('#clear');
+        var per = document.querySelector('#per');
+        var negative = document.querySelector('#negative');
+
+        for(var i = 0; i< btn.length; i++){
+             btn[i].addEventListener('click',function(){
+               var lastchar = result.value.slice(-1); 
+
+               if(lastchar == '+' || lastchar == '-' || lastchar == '*' || lastchar == '/' || lastchar == '%'){
+                   if(this.value == '+' || this.value == '-' || this.value == '*' || this.value == '/' || this.value == '%'){
+                    result.value = result.value;
+                   }
+                   else{
+                    result.value += this.value;
+                   }
+               }
+               else{
+                result.value += this.value;
+               }
+             });
+        }
+    
+        output.addEventListener('click',function(){
+           result.value = eval(result.value);
+        });
+
+        allclear.addEventListener('click',function(){
+            result.value =" ";
+        });
+        
+        clear.addEventListener('click',function(){
+            var demo = result.value;
+            result.value = demo.slice(0,demo.length-1);
+            demo = result.value;
+        });
+
+        per.addEventListener('click',function(){
+          var abc = result.value;
+          result.value = parseInt(result.value)/100;
+          abc = result.value;
+        });
+
+        negative.addEventListener('click',function(){
+           result.value = -(parseInt(result.value));
+        });
+    </script>
+
+
+</body>
+</html>

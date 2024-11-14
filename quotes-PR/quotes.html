@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fonts/neue/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="css/quotes.css" type="text/css">
+</head>
+<body>
+    <div id="caption" class="caption">
+        <div id="bgcolor" class="bg">
+         <h3 id="quote"></h3>
+         <h5 id="name"></h5>
+         <p id="date"></p>
+         <img src="" title="1" alt="1" width="70px" height="70px" id="img"/>
+         <input type="submit" value="change" onclick="getchange()"/>
+         <h4 id="count">1</h4>
+        </div> 
+     </div>
+</body>
+</html>
+
+<script>
+    var caption =[
+        {
+            quote:'Tis the privilege of friendship to talk nonsense, and to have her nonsense respected.',
+            name: 'Mencius',
+            date: '28/03/2023',
+            bgcolor:'#01204E',
+            img:'img/1.jpeg'
+        },
+        {
+            quote:'They may forget what you said, but they will never forget how you made them feel.',
+            name: 'Carl W. Buechner',
+            date: '15/04/2019',
+            bgcolor:'#A91D3A',
+            img:'img/2.jpeg'
+        },
+        {
+            quote:'Things are never quite as scary when you have got a best friend.',
+            name: 'Bill Watterson',
+            date: '28/06/2020',
+            bgcolor:'#6B240C',
+            img:'img/3.jpg'
+        },
+        {
+            quote:'A day without a friend is like a pot without a single drop of honey left inside.',
+            name: 'Winnie the Pooh',
+            date: '29/05/2022',
+            bgcolor:'black',
+            img:'img/4.jpg'
+        }
+    ]
+
+    var bg = document.getElementById('bgcolor');
+    bg.style.backgroundColor=caption[0]['bgcolor'];
+    var qu = document.getElementById('quote').innerHTML = caption[0]['quote'];
+    var na = document.getElementById('name').innerHTML = caption[0]['name'];
+    var da = document.getElementById('date').innerHTML = caption[0]['date'];
+    var im = document.getElementById('img').src = caption[0].img;
+    var i =1;
+
+    function getchange(){
+        if(i == caption.length){
+            i =0;
+        }
+        bg.style.backgroundColor=caption[i]['bgcolor'];
+        var qu = document.getElementById('quote').innerHTML = caption[i]['quote'];
+        var na = document.getElementById('name').innerHTML = caption[i]['name'];
+        var da = document.getElementById('date').innerHTML = caption[i]['date'];
+        var im = document.getElementById('img').src = caption[i].img;
+        document.getElementById('count').innerHTML = i+1;
+         i++;
+    }
+    
+</script>

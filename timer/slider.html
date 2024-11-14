@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        img{
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    
+    <section class="slider">
+       <div class="container">
+        <div class="slider-slide">
+            <img src="" alt="1" title="1" width="100%" height="650px" id="img"/>
+        </div>
+        
+       </div>
+    </section>
+
+    <script>
+
+        var caption = [
+            {
+              img:"img/5.jpg",
+            },
+            {
+                img:"img/4.jpg",
+            },
+            {
+                img:"img/2.jpg",
+            },
+            {
+                img:"img/5.jpg",
+            }
+        ]
+
+        var i = 0;
+        var imgElement = document.getElementById('img');
+        imgElement.src = caption[i].img;
+
+        var changeimg = setInterval(function(){
+             i++;
+             if(i >= caption.length){
+                i = 0;
+             }
+             imgElement.src = caption[i].img;
+        },1000);
+
+        
+    //    var caption = [
+    //     {
+    //         img :"img/5.jpg",
+
+    //     },
+    //     {
+    //         img :"img/2.jpg",
+    //     },
+    //     {
+    //         img :"img/3.jpeg",
+    //     },
+    //     {
+    //         img :"img/4.jpg",
+    //     },
+    //     {
+    //         img :"img/5.jpg",
+    //     }
+    //    ]
+
+       
+    //    var i = 0;
+    //     var imgElement = document.getElementById('img');
+    //     imgElement.src = caption[i].img; 
+
+    //     var imgchange = setInterval(function() {
+    //     i++;
+    //     if (i >= caption.length) {
+    //     i = 0;
+    //     }
+    //     imgElement.src = caption[i].img;
+    //     },1000);
+    </script>
+</body>
+</html>

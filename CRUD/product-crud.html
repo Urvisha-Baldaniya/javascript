@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            display: flex;
+            text-align: center;
+              flex-wrap: wrap;
+              
+              
+            
+        }
+        .inner{
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            background-color: #fff;
+            width: 33.33%;
+        }
+        form{
+            width: 200px;
+            background-color: #4A628A;
+            padding: 30px;
+        }
+        .form{
+            display: flex;
+            align-items: center;
+            height: 300px;
+            justify-content: center;
+            margin: 30px;
+            
+        }
+        .form input{
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .form button{
+            background-color: #CC2B52;
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 10px 15px;
+            border: none;
+            text-align: center;
+        }
+        .delete, .update{
+            background-color: #CC2B52;
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 5px 7px;
+        }
+        a{
+            display: inline-block;
+            text-decoration: none;
+        }
+        .update{
+            background-color: #4A628A;
+        }
+    </style>
+</head>
+<body>
+
+   <div class="form">
+    <form>
+        <input type="text" id="editno"/>
+        <div>
+            <input type="text" placeholder="Enter Your Pro Name" id="name"/>
+        </div>
+        <div>
+            <input type="number" placeholder="Enter Your Price" id="price"/>
+        </div>
+        <div>
+            <input type="number" placeholder="Enter Your Quantity" id="quantity"/>
+        </div>
+        <div>
+            <button type="button" onclick="addData()" id="submit">ADD PRODUCT</button>
+        </div>
+    </form>
+   </div>
+
+    <div id="res"></div>
+
+    <script>
+
+        var product =[
+            {
+              name:"Mobile",
+              price:50000,
+              quantity:5,
+              no:Math.round(Math.random()*1000)
+            },
+            {
+                name:"laptop",
+                price:70000,
+                quantity:3,
+                no:Math.round(Math.random()*1000)
+            },
+            {
+                name:"ipad",
+                price:3000,
+                quantity:7,
+                no:Math.round(Math.random()*1000)
+            }
+        ]
+
+        function addData(){
+            var name = document.getElementById('name').value;
+            var price = document.getElementById('price').value;
+            var quantity = document.getElementById('quantity').value;
+            var editno = document.getElementById('editno').value;
+
+            if(editno){
+               for(var i=0; i<product.length; i++){
+                if(product[i]['no'] == editno){
+                    product[i]['name'] = name;
+                    product[i]['price'] = price;
+                    product[i]['quantity'] = quantity;
+                    document.getElementById('submit').value ="ADD PRODUCT";
+                    document.getElementById('editno').value = "";
+                }
+               }
+            }
+            else{
+                var pro ={
+                name:name,
+                price:price,
+                quantity:quantity,
+                no:Math.round(Math.random()*1000)
+            }
+            product.push(pro);
+            }
+
+            
+
+            var add = JSON.stringify(product);
+            localStorage.setItem('product',add);
+             viewData();
+            var name = document.getElementById('name').value="";
+            var price = document.getElementById('price').value="";
+            var quantity = document.getElementById('quantity').value="";
+        }
+
+        function viewData(){
+            var viewdata = localStorage.getItem('product');
+            var view = JSON.parse(viewdata);
+
+            var data = "<div class='main'>"
+                
+                    for(var i =0; i<view.length; i++){
+                        data += `<div class='inner'>` 
+                       data += `<h1>${view[i]['name']}</h1>`;
+                       data += `<p>${view[i]['price']}₹</p>`;
+                       data += `<p>${view[i]['quantity']}</p>`;
+                       data += `<div style='display: flex; justify-content: space-between;padding: 0 40px;'>`
+                       data += `<p><a href='javascript:deleteData(${view[i]['no']})' class='delete'>Delete</a></p>`
+                       data += `<p><a href='javascript:editData(${view[i]['no']})' class='update'>Update</a></p>`
+                       data += `</div>`
+                     data += `</div>`
+                    }
+               
+                data += "</div>";
+                document.getElementById('res').innerHTML = data;
+        }
+        viewData();
+
+        function deleteData(no){
+            var dedata = localStorage.getItem('product');
+            var ddata = JSON.parse(dedata);
+
+            for(var i=0; i<ddata.length; i++){
+                if(ddata[i]['no'] == no){
+                    ddata.splice(i, 1);
+                }
+            }
+
+            localStorage.setItem('product', JSON.stringify(ddata));
+            viewData();
+        }
+
+        function editData(no){
+            var updata = localStorage.getItem('product');
+            var udata = JSON.parse(updata);
+
+            for(var i=0; i<udata.length; i++){
+                if(udata[i]['no'] == no){
+                    document.getElementById('name').value = udata[i]['name'];
+                    document.getElementById('price').value = udata[i]['price'];
+                    document.getElementById('quantity').value = udata[i]['quantity'];
+                    document.getElementById('editno').value = no;
+                    document.getElementById('submit').value ="UPDATE PRODUCT";
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="remixicon/remixicon.css" type="text/css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .inner{
+            border: 4px solid gray;
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            border-radius: 5px;
+            
+        }
+        h1{
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        i{
+            display: inline-block;
+            font-size: 20px;
+        }
+        button{
+            border: none;
+            border-radius: 50%;
+            background-color: white;
+            border: 3px solid #979797;
+            
+        }
+        button:first-child i, button:last-child i{
+            color: #495259;
+        }
+        button:first-child i{
+            padding: 5px 5px 5px 6px;
+        }
+        button:last-child i{
+            padding: 5px;
+        }
+        button:nth-child(2) i{
+            color: #F44336;
+            padding: 5px;
+        }
+        .main{
+            background-color: hsl(0, 0%, 90%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1, .icon{
+            transform: translateY(100%);
+        }
+        p{
+        transform: translateY(100%);
+        font-size: 20px;
+        }
+       
+
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div class="inner">
+        <h1 id="timer">
+            00:00:00 
+         </h1>
+
+         <p>
+            <span>Hours</span>
+            <span style="margin: 0 5px;">Minutes</span>
+            <span>Seconds</span>
+         </p>
+            
+            
+        <div class="icon">
+            <button onclick="starttimer()">
+                <i class="ri-play-fill"></i>
+            </button>
+            <button onclick="clearInterval(time)" style="margin: 0 20px;">
+                <i class="ri-square-fill"></i>
+            </button>
+            <button onclick="resettimer()">
+                <i class="ri-restart-line"></i>
+            </button>
+            
+        </div>
+        
+</div>
+</div>
+
+
+  <script>
+
+    var timer = document.getElementById('timer');
+    var time;
+
+    function starttimer(){
+        var hours = 0;
+        var minutes = 0;
+        var seconds = 0;
+        
+        time = setInterval(function(){
+            var abc = hours+" : "+minutes+" : "+seconds;
+            timer.innerHTML = abc;
+             seconds++;
+            if(seconds == 60){
+                minutes++;
+                seconds = 0;
+            }
+            if(minutes == 60){
+                hours++;
+                minutes = 0;
+            }
+        },1);
+    }
+
+    function resettimer(){
+        timer.innerHTML = "00 : 00 : 00";
+    }
+
+    // var timer = document.getElementById('timer');
+    // var time;
+
+    // function starttimer(){
+    //     var hours = 0;
+    //     var minutes = 0;
+    //     var seconds = 0;
+
+    //      time = setInterval(function(){
+    //         var abc = hours+":"+minutes+":"+seconds;
+    //         timer.innerHTML = abc;
+    //         seconds++;
+    //         if(seconds == 60){
+    //         minutes++;
+    //         seconds = 0;
+    //     }
+    //        if(minutes == 60){
+    //         hours++;
+    //         minutes = 0;
+    //     }
+    //     },1);
+    // }
+
+    // function resettimer(){
+    //     timer.innerHTML = "00:00:00";
+    // }
+  </script>
+</body>
+</html>

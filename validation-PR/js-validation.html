@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/js-validation.css" type="text/css">
+</head>
+<body>
+    
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+       <div class="main">
+          <div class="inner">
+            <form onsubmit="return validation()">
+                <table>
+                  <tr>
+                     <td>Name:</td>
+                     <td>
+                         <input type="text" id="name" placeholder="Enter Your Name"/>
+                         <div style="color:red;" id="errorname"></div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Email:</td>
+                     <td>
+                         <input type="text" id="mail" placeholder="Enter Your Email"/>
+                         <div style="color:red;" id="errormail"></div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Password:</td>
+                     <td>
+                         <input type="password" id="pass" placeholder="Enter Your password"/>
+                         <div style="color:red;" id="errorpass"></div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Number:</td>
+                     <td>
+                         <input type="tel" id="num" placeholder="Enter Your Number"/>
+                         <div style="color:red;" id="errornum"></div>
+                     </td>
+                     
+                  </tr>
+                  <tr>
+                     <td>Hobby:</td>
+                     <td>
+                         <input type="checkbox" id="dance"/>dance
+                         <input type="checkbox" id="play"/>Playing
+                         <input type="checkbox" id="travel"/>Travelling
+                         <div style="color:red;" id="errorhobby"></div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Gender:</td>
+                     <td>
+                         <input type="radio" id="male"/>Male
+                         <input type="radio" id="female"/>Female
+                         <input type="radio" id="other"/>other
+                         <div style="color:red;" id="errorgender"></div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Date of Birth:</td>
+                     <td> 
+                         <input type="date" id="date"/>
+                         <div style="color:red;" id="errordate"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                     <td>City:</td>
+                     <td>
+                         <select id="city">
+                             <option></option>
+                             <option>Ahmadabad</option>
+                             <option>Rajkot</option>
+                             <option>Vadodara</option>
+                             <option>Mumbai</option>
+                         </select>
+                         <div style="color:red;" id="errorcity"></div>
+                     </td>
+                     
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td><input type="submit" value="submit" class="button"/></td>
+                  </tr>
+                </table>
+             </form>
+         
+          </div>
+       </div>
+    <script>
+        function validation(){
+            var name = document.getElementById('name').value;
+            var mail = document.getElementById('mail').value;
+            var pass = document.getElementById('pass').value;
+            var num = document.getElementById('num').value;
+            var dance = document.getElementById('dance').checked;
+            var play = document.getElementById('play').checked;
+            var travel = document.getElementById('travel').checked;
+            var male = document.getElementById('male').checked;
+            var female = document.getElementById('female').checked;
+            var other = document.getElementById('other').checked;
+            var date = document.getElementById('date').value;
+            var city = document.getElementById('city').value;
+
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var passformat=  /^[A-Za-z]\w{7,14}$/;
+
+            if(name == ''){
+                document.getElementById('errorname').innerHTML ="Name is required..!";
+               return false;
+            }
+            else if(name.length <= 2){
+                document.getElementById('errorname').innerHTML ="Minimum 2 character required..!";
+                return false;
+            }
+            else if(mail == ''){
+                document.getElementById('errorname').innerHTML ="";
+                document.getElementById('errormail').innerHTML ="Email is required..!";
+                return false;
+            }
+            else if(!mail.match(mailformat)){
+                document.getElementById('errormail').innerHTML ="Enter your valid email..!";
+                return false;
+            }
+            else if(pass == ''){
+               document.getElementById('errormail').innerHTML ="";
+                document.getElementById('errorpass').innerHTML ="Password is required..!";
+                return false;
+            }
+            else if(!pass.match(passformat)){
+                document.getElementById('errorpass').innerHTML ="Input Password and Submit [7 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter]";
+                return false;
+            }
+            else if(num == ''){
+               document.getElementById('errorpass').innerHTML ="";
+                document.getElementById('errornum').innerHTML ="Number is required..!";
+                return false;
+            }
+            else if(num.length > 11){
+                document.getElementById('errorpass').innerHTML ="";
+                document.getElementById('errornum').innerHTML ="Maximum 10 character required..!";
+                return false;
+            }
+            else if(num.length != 10){
+                document.getElementById('errorpass').innerHTML ="";
+                document.getElementById('errornum').innerHTML ="Minimum 10 character required..!";
+                return false;
+            }
+            else if(dance == false && play == false && travel == false){
+               document.getElementById('errornum').innerHTML ="";
+                document.getElementById('errorhobby').innerHTML ="Hobby is required..!";
+                return false;
+            }
+            else if(male == false && female == false && other == false){
+               document.getElementById('errorhobby').innerHTML ="";
+                document.getElementById('errorgender').innerHTML ="Gender is required..!";
+                return false;
+            }
+            else if(date == ''){
+               document.getElementById('errorgender').innerHTML ="";
+                document.getElementById('errordate').innerHTML ="Date is required..!";
+                return false;
+            }
+            else if(city == ''){
+               document.getElementById('errordate').innerHTML ="";
+                document.getElementById('errorcity').innerHTML ="Select your city required..!";
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

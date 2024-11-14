@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="remix/fonts/remixicon.css" type="text/css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: "remixicon";
+        }
+        a{
+            text-decoration: none;
+        }
+        input{
+            width: 1000px;
+            height: 30px;
+            padding:  20px 5px;
+            border-radius: 5px;
+            border-color: #B4B4B8;
+            font-size: 18px;
+        }
+        .cart a i{
+            font-size: 40px;
+            color: black;
+        }
+        .search{
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 100px 20px 100px;
+        }
+        ::placeholder{
+            font-size: 20px;
+            color: #DDDDDD;
+        }
+        .cart{
+            margin-right: 20px;
+        }
+        .cart a span{
+            position: absolute;
+            top: -2px;
+            right: -6px;
+            background-color: #5463FF;
+            color: #fff;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            font-size: 15px;
+            
+        }
+    </style>
+</head>
+<body>
+
+    
+        <div class="search">
+            <div>
+                <input type="text" id="search" placeholder="Search" onkeyup="searchProduct()"/>
+            </div>
+            <div class="cart" style="position: relative;">
+                <a href="checkout.html">
+                    <i class="ri-shopping-cart-line"></i>
+                    <span>0</span>
+                </a>
+            </div>
+    
+        </div>
+        
+    
+
+    <div id="res">
+        
+    </div>
+
+    <script src="js/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script src="js/viewdata.js" type="text/javascript"></script>
+    
+</body>
+</html>
